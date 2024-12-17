@@ -1,4 +1,4 @@
-package com.projeto.transito_api.domain.model;
+package com.projeto.transito_api.entities;
 
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
