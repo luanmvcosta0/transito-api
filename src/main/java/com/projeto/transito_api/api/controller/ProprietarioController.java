@@ -39,13 +39,9 @@ public class ProprietarioController {
 
     @GetMapping(value = "/proprietarios/{proprietarioId}")
     public ResponseEntity<Proprietario> buscar(@PathVariable Long proprietarioId) {
-        Optional<Proprietario> proprietario = proprietarioRepository.findById(proprietarioId);
-
-        if (proprietario.isPresent()) {
-            return ResponseEntity.ok(proprietario.get());
-        }
-
-        return ResponseEntity.notFound().build();
+        return proprietarioRepository.findById(proprietarioId)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
 }
