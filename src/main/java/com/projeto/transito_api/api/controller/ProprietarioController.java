@@ -4,9 +4,11 @@ import com.projeto.transito_api.entities.Proprietario;
 import com.projeto.transito_api.repository.ProprietarioRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @AllArgsConstructor
 @RestController
@@ -34,5 +36,10 @@ public class ProprietarioController {
         return proprietarioRepository.findByNomeContaining("Bu");
     }
 
+    @GetMapping(value = "/proprietarios/{proprietarioId}")
+    public Proprietario buscar(@PathVariable Long proprietarioId) {
+        Optional<Proprietario> proprietario = proprietarioRepository.findById(proprietarioId);
+        return proprietario.orElse(null);
+    }
 
 }
