@@ -2,6 +2,7 @@ package com.projeto.transito_api.api.controller;
 
 import com.projeto.transito_api.entities.Proprietario;
 import com.projeto.transito_api.repository.ProprietarioRepository;
+import com.projeto.transito_api.service.RegistroProprietarioService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -22,6 +23,7 @@ public class ProprietarioController {
     //private ProprietarioRepository proprietarioRepository;    // --> É boa pratica utilizar contrutor para instanciar
 
 
+    private final RegistroProprietarioService registroProprietarioService;
     private final ProprietarioRepository proprietarioRepository;
 
     @GetMapping("")
@@ -39,7 +41,7 @@ public class ProprietarioController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Proprietario adicionar(@Valid @RequestBody Proprietario proprietario) {
-        return proprietarioRepository.save(proprietario);
+        return registroProprietarioService.salvar(proprietario);
     }
 
     @PutMapping("/{proprietarioId}")
@@ -49,7 +51,7 @@ public class ProprietarioController {
         }
 
         proprietario.setId(proprietarioId);
-        Proprietario proprietarioAtualizado = proprietarioRepository.save(proprietario);
+        Proprietario proprietarioAtualizado = registroProprietarioService.salvar(proprietario);
 
         return ResponseEntity.ok(proprietarioAtualizado);
     }
@@ -60,7 +62,7 @@ public class ProprietarioController {
             return ResponseEntity.notFound().build();
         }
 
-        proprietarioRepository.deleteById(proprietarioId);
+        registroProprietarioService.excluir(proprietarioId);
         return ResponseEntity.noContent().build();
     }
 
