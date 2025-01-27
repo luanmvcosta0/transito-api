@@ -1,6 +1,7 @@
 package com.projeto.transito_api.api.controller;
 
 import com.projeto.transito_api.entities.Proprietario;
+import com.projeto.transito_api.exception.NegocioExeption;
 import com.projeto.transito_api.repository.ProprietarioRepository;
 import com.projeto.transito_api.service.RegistroProprietarioService;
 import jakarta.validation.Valid;
@@ -64,6 +65,11 @@ public class ProprietarioController {
 
         registroProprietarioService.excluir(proprietarioId);
         return ResponseEntity.noContent().build();
+    }
+
+    @ExceptionHandler(NegocioExeption.class)    // Metodo capaz de capturar exeções e dar respostas adequedas
+    public ResponseEntity<String> capturar(NegocioExeption e) {
+        return ResponseEntity.badRequest().body(e.getMessage());
     }
 
 }
