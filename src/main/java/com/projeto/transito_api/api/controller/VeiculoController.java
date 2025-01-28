@@ -25,4 +25,11 @@ public class VeiculoController {
         return veiculoRepository.findAll();
     }
 
+    @GetMapping(value = "/{veiculoId}")
+    public ResponseEntity<Veiculo> buscarPorId(@PathVariable Long veiculoId) {
+        return veiculoRepository.findById(veiculoId)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
 }
