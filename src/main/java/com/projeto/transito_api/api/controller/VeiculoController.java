@@ -1,6 +1,7 @@
 package com.projeto.transito_api.api.controller;
 
 import com.projeto.transito_api.entities.Veiculo;
+import com.projeto.transito_api.exception.NegocioExeption;
 import com.projeto.transito_api.repository.VeiculoRepository;
 import com.projeto.transito_api.service.RegistroProprietarioService;
 import com.projeto.transito_api.service.RegistroVeiculoService;
@@ -38,6 +39,11 @@ public class VeiculoController {
     @ResponseStatus(HttpStatus.CREATED)
     public Veiculo cadastrar(@RequestBody Veiculo veiculo) {
         return registroVeiculoService.cadastrar(veiculo);
+    }
+
+    @ExceptionHandler(NegocioExeption.class)    // Metodo capaz de capturar exeções e dar respostas adequedas
+    public ResponseEntity<String> capturar(NegocioExeption e) {
+        return ResponseEntity.badRequest().body(e.getMessage());
     }
 
 }
