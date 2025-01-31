@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 public class RegistroVeiculoService {
 
     private final VeiculoRepository veiculoRepository;
-    private final ProprietarioRepository proprietarioRepository;
+    private final RegistroProprietarioService registroProprietarioService;
 
     @Transactional
     public Veiculo cadastrar(Veiculo novoVeiculo) {
@@ -33,8 +33,9 @@ public class RegistroVeiculoService {
             throw new NegocioExeption("Já existe um veiculo cadastrado com esta placa.");
         }
 
-        Proprietario proprietario = proprietarioRepository.findById(novoVeiculo.getProprietario().getId())
-                        .orElseThrow(() -> new NegocioExeption("Proprietario não encontrado"));
+
+        Proprietario proprietario = registroProprietarioService.buscar(novoVeiculo.getProprietario().getId());
+
 
         novoVeiculo.setProprietario(proprietario);
         novoVeiculo.setStatus(StatusVeiculo.REGULAR);
