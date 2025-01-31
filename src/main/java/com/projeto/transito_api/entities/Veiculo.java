@@ -1,5 +1,6 @@
 package com.projeto.transito_api.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -26,9 +27,14 @@ public class Veiculo {
     private String modelo;
     private String placa;
 
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)    //Para deixar essa propriedade com somente leitura, ou seja, so pode ser lido, não pode ser enviado no JSON
     @Enumerated(EnumType.STRING)
     private StatusVeiculo status;
+
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private LocalDateTime dataCadastro;
+
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private LocalDateTime dataApreensao;
 
 }
