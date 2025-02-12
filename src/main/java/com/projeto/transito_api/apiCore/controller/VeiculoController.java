@@ -1,9 +1,9 @@
-package com.projeto.transito_api.api.controller;
+package com.projeto.transito_api.apiCore.controller;
 
-import com.projeto.transito_api.entities.Veiculo;
-import com.projeto.transito_api.exception.NegocioExeption;
-import com.projeto.transito_api.repository.VeiculoRepository;
-import com.projeto.transito_api.service.RegistroVeiculoService;
+import com.projeto.transito_api.domain.entities.Veiculo;
+import com.projeto.transito_api.domain.exception.NegocioExeption;
+import com.projeto.transito_api.domain.repository.VeiculoRepository;
+import com.projeto.transito_api.domain.service.RegistroVeiculoService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,11 +37,6 @@ public class VeiculoController {
     @ResponseStatus(HttpStatus.CREATED)
     public Veiculo cadastrar(@RequestBody Veiculo veiculo) {
         return registroVeiculoService.cadastrar(veiculo);
-    }
-
-    @ExceptionHandler(NegocioExeption.class)    // Metodo capaz de capturar exeções e dar respostas adequedas
-    public ResponseEntity<String> capturar(NegocioExeption e) {
-        return ResponseEntity.badRequest().body(e.getMessage());
     }
 
 }

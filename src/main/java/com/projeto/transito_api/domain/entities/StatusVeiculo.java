@@ -1,4 +1,4 @@
-package com.projeto.transito_api.entities;
+package com.projeto.transito_api.domain.entities;
 
 public enum StatusVeiculo {
 

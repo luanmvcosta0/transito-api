@@ -1,6 +1,6 @@
-package com.projeto.transito_api.repository;
+package com.projeto.transito_api.domain.repository;
 
-import com.projeto.transito_api.entities.Proprietario;
+import com.projeto.transito_api.domain.entities.Proprietario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

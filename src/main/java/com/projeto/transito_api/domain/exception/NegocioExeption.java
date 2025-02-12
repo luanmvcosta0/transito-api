@@ -1,4 +1,4 @@
-package com.projeto.transito_api.exception;
+package com.projeto.transito_api.domain.exception;
 
 public class NegocioExeption extends RuntimeException {
 

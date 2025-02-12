@@ -1,11 +1,10 @@
-package com.projeto.transito_api.service;
+package com.projeto.transito_api.domain.service;
 
-import com.projeto.transito_api.entities.Proprietario;
-import com.projeto.transito_api.entities.StatusVeiculo;
-import com.projeto.transito_api.entities.Veiculo;
-import com.projeto.transito_api.exception.NegocioExeption;
-import com.projeto.transito_api.repository.ProprietarioRepository;
-import com.projeto.transito_api.repository.VeiculoRepository;
+import com.projeto.transito_api.domain.repository.VeiculoRepository;
+import com.projeto.transito_api.domain.entities.Proprietario;
+import com.projeto.transito_api.domain.entities.StatusVeiculo;
+import com.projeto.transito_api.domain.entities.Veiculo;
+import com.projeto.transito_api.domain.exception.NegocioExeption;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
